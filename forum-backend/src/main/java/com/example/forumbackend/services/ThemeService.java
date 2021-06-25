@@ -1,5 +1,6 @@
 package com.example.forumbackend.services;
 
+import com.example.forumbackend.domain.Post;
 import com.example.forumbackend.domain.Theme;
 import com.example.forumbackend.domain.User;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,14 @@ public class ThemeService {
     }
 
     public void addTheme(Theme theme) {
-        if (theme.getId() == null) theme.setId(new Random().nextLong());
+        if (theme.getId() == null) theme.setId(new Random().nextInt());
         themes.add(theme);
+    }
+
+    public Theme getThemeById(Integer id) {
+        return themes.stream()
+                .filter(entry -> entry.getId().equals(id))
+                .findFirst()
+                .orElse(new Theme());
     }
 }

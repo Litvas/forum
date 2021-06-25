@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -18,39 +19,27 @@ public class InitService {
 
     @PostConstruct
     private void init() {
-        Theme theme0 = new Theme();
-        theme0.setId(0L);
-        theme0.setTitle("Important0");
-        themeService.addTheme(theme0);
+        for (int i = 0; i < 5; i++) {
 
-        Theme theme1 = new Theme();
-        theme1.setId(1L);
-        theme1.setTitle("Important1");
-        themeService.addTheme(theme1);
+            Theme theme = new Theme();
+            theme.setId(i);
+            theme.setTitle("Important" + i);
+            themeService.addTheme(theme);
 
-        User user0 = new User();
-        user0.setId(0L);
-        user0.setName("User0");
-        userService.addUser(user0);
+            User user = new User();
+            user.setId(i);
+            user.setName("User" + i);
+            userService.addUser(user);
+        }
 
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setName("User1");
-        userService.addUser(user1);
-
-        Post post0 = new Post();
-        post0.setId(0L);
-        post0.setContent("Content0");
-        post0.setTheme(theme0);
-        post0.setAuthor(user0);
-        postService.addPost(post0);
-
-        Post post1 = new Post();
-        post1.setId(1L);
-        post1.setContent("Content1");
-        post1.setTheme(theme0);
-        post1.setAuthor(user1);
-        postService.addPost(post1);
+        for (int i = 0; i < 1000; i++) {
+            Post post = new Post();
+            post.setId(i);
+            post.setContent("Content" + i);
+            post.setTheme(themeService.getThemeById(new Random().nextInt(5)));
+            post.setAuthor(userService.getUserById(new Random().nextInt(5)));
+            postService.addPost(post);
+        }
     }
 
 }

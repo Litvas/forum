@@ -1,7 +1,6 @@
 package com.example.forumbackend.services;
 
 import com.example.forumbackend.domain.Post;
-import com.example.forumbackend.domain.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,11 +17,11 @@ public class PostService {
     }
 
     public void addPost(Post post) {
-        if (post.getId() == null) post.setId(new Random().nextLong());
+        if (post.getId() == null) post.setId(new Random().nextInt());
         posts.add(post);
     }
 
-    public Post getPostById(Long id) {
+    public Post getPostById(Integer id) {
         return posts.stream()
                 .filter(entry -> entry.getId().equals(id))
                 .findFirst()

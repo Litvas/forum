@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Theme {
 
-    private Long id;
+    private Integer id;
 
     private String title;
 
