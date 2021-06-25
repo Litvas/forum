@@ -1,0 +1,15 @@
+.nav {
+    background-color: darkseagreen;
+    width: 10vw;
+    height: 100vh;
+    text-align: left;
+}
+
+a {
+    color: black;
+}
+
+.linkWrapper {
+    padding: 2vh;
+}
+
