@@ -3,10 +3,9 @@ package com.example.forumbackend.controllers;
 import com.example.forumbackend.domain.Post;
 import com.example.forumbackend.services.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -18,5 +17,13 @@ public class PostController {
     @GetMapping("/{id}")
     public Post getOnePost(@PathVariable Integer id) {
         return postService.getPostById(id);
+    }
+
+    @GetMapping
+    public List<Post> getAllPosts(
+            @RequestParam( required = false) Integer page,
+            @RequestParam( required = false) Integer pageSize
+    ) {
+        return postService.getAllPosts(page, pageSize);
     }
 }

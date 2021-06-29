@@ -12,8 +12,10 @@ public class PostService {
 
     List<Post> posts = new ArrayList<>();
 
-    public List<Post> getAllUsers() {
-        return posts;
+    public List<Post> getAllPosts(Integer page, Integer pageSize) {
+        if (page != null & pageSize != null) {
+            return posts.subList(page * pageSize, page * pageSize + pageSize);
+        } else return posts;
     }
 
     public void addPost(Post post) {
