@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
@@ -21,9 +22,18 @@ public class PostController {
 
     @GetMapping
     public List<Post> getAllPosts(
-            @RequestParam( required = false) Integer page,
-            @RequestParam( required = false) Integer pageSize
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer pageSize
     ) {
         return postService.getAllPosts(page, pageSize);
+    }
+
+    @GetMapping("/themes/{theme}")
+    public List<Post> getAllPostsByTheme(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer pageSize,
+            @PathVariable String theme
+    ) {
+        return postService.getAllPostsByTheme(theme, page, pageSize);
     }
 }
