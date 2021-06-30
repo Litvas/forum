@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import ThemeComponent from "./ThemeComponent";
-import style from './ThemeContainer.module.css'
+import style from './Theme.module.css'
 
 const ThemeContainer = () => {
     const [themes, setTheme] = useState([]);

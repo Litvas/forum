@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import axios from "axios";
+import style from './Theme.module.css';
 
 const ThemeContent = () => {
 
@@ -19,12 +20,12 @@ const ThemeContent = () => {
 
     return <div>
         <div>{themeContent.map(post => (
-            <div key={post.id}>
+            <div className={style.post} key={post.id}>
                 <label>Author:</label>
-                <NavLink to={'/themes/' + post.author.name}>
+                <NavLink className={style.content} to={'/themes/' + post.author.name}>
                     {post.author.name}
                 </NavLink>
-                <div>{post.content}</div>
+                <div className={style.content}>{post.content}</div>
             </div>
         ))} </div>
     </div>
